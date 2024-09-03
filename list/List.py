@@ -8,58 +8,54 @@ T = TypeVar("T")
 @typechecked
 class List(Generic[T]):
     def insert(self, index: int, value: T):
-        """指定IndexにNode追加
+        """Add Node to specific index
 
         Args:
-            index: ノードを削除する位置のインデックス。
-            value: 追加するノードのデータ。T 型に従う
+            index: Index for node to be inserted
+            value: Value of Node to be added. Has to be type of T
 
         Raises:
-            IndexError: Index がリスト範囲外の場合にエラーとなる。
+            IndexError: If the index is not in the list, an IndexError will occur
         """
         raise NotImplementedError
 
     def remove(self, index: int):
-        """指定IndexのNode削除
+        """Remove Node from specific index
 
         Args:
-            index: ノードを削除する位置のインデックス。
+            index: Index for node to be deleted
 
         Raises:
-            IndexError: Index がリスト範囲外の場合にエラーとなる。
+            IndexError: If the index is not in the list, an IndexError will occur
         """
         raise NotImplementedError
 
     def length(self) -> int:
-        """Listの長さ取得
+        """Get List Length
 
         Returns:
-            int: リスト内のノードの数。
+            int: number of list length as int
         """
         raise NotImplementedError
 
     def get(self, index: int) -> T:
-        """指定IndexのNodeがあるかを確認
+        """get value of node of specific index
 
         Args:
-            index: 値を取得する位置のインデックス。
+            index: target node index
 
         Returns:
-            T: 指定されたインデックスにあるノードの値。
+            T: Value of target node
 
         Raises:
-            IndexError: Index がリスト範囲外の場合にエラーとなる。
+            IndexError: If the index is not in the list, an IndexError will occur
         """
         raise NotImplementedError
 
     def clear(self):
-        """List全体を空にする"""
+        """Clear entire list"""
         raise NotImplementedError
 
     def display(self):
-        """List全体のString表示
-
-        Note:
-            リスト全体の要素を表示する。（現場では必要ない処理となってしまいケースが多いと思いますが、テストする時に便利で一応用意することとしました。）
-        """
+        """Show entire list in console"""
         raise NotImplementedError
