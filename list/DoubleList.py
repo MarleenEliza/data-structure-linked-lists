@@ -24,7 +24,6 @@ class DoubleList(List[T]):
             raise IndexError("Index out of bounds")
 
     def __get_node(self, index: int) -> DoubleNode[T]:
-        """指定したインデックスのノードを取得"""
         self.__validate_index(index)
         
         current_node = self.head
@@ -33,7 +32,6 @@ class DoubleList(List[T]):
         return current_node
 
     def insert(self, index: int, value: T):
-        """要素の挿入"""
         if not isinstance(value, self.__orig_class__.__args__[0]):
             raise TypeError(f"Expected value of type {self.__orig_class__.__args__[0]}, got {type(value)}")
 
@@ -64,7 +62,6 @@ class DoubleList(List[T]):
         self.size += 1
 
     def reverse(self):
-        """リストの順序を逆転させる"""
         if(self.size > 1):
             current_node = self.head
             self.head, self.tail = self.tail, self.head

@@ -26,25 +26,25 @@ def list_LS3():
     
 class DoubleTestList(unittest.TestCase):
     """
-    このテストクラスは、DoubleListクラスの以下の条件と組み合わせに対する動作をテストする。
+    Unit Test class for DoubleList Class.
 
-    **List Size(LS)に関するケース:**
-    - LS0: リストのサイズが0 (リストが空)
-    - LS1: リストのサイズが1
-    - LS2: リストのサイズが2
-    - LS3: リストのサイズが3
+    **List Size(LS) test cases**
+    - LS0: ListSize == 0 (list is empty)
+    - LS1: ListSize == 1
+    - LS2: ListSize == 2
+    - LS3: ListSize == 3
 
-    **Node Index(NI) に関するケース:**
-    - NI0: ノードがリストの先頭にある場合 (index = 0)
-    - NI1: ノードがリストの中間にある場合
-    - NI2: ノードがリストの末尾にある場合 (index == size または index == size - 1)
+    **Node Index(NI) test cases**
+    - NI0: Node is at the beginning of the list -> NodeIndex == 0
+    - NI1: Node is at the beginning of the list -> NodeIndex == 1
+    - NI2: Node is at the end of the list -> NodeIndex == 2
   
-    **Error(E) に関数ケース**
-    - E1: TypeError, タイプが不適切である場合
-    - E2: IndexError, Indexが無効 (Index == -1など)である場合
-    - E3: IndexError, Indexが実行対象リストに存在していない場合
+    **Error(E) test cases**
+    - E1: TypeError -> Type is faulty
+    - E2: IndexError -> Index is faulty (index < 0)
+    - E3: IndexError -> Index doesn't exsist in the List
     
-    **テストマトリックス:**
+    **Test matrix:**
     |      | LS0  | LS1  | LS2  | LS3  |
     |------|------|------|------|------|
     | NI0  | ○    | ○    | ○    | ○    |
@@ -54,8 +54,8 @@ class DoubleTestList(unittest.TestCase):
     | E2   | ○    | ×    | ×    | ×    |
     | E3   | ○    | ○    | ○    | ○    |
 
-    - ○: 実施するテスト
-    - ×: テスト対象外
+    - ○: Test
+    - ×: Don't test
 
     """
     def setUp(self):
@@ -64,9 +64,9 @@ class DoubleTestList(unittest.TestCase):
     # INSERT 異常処理
     def test_insert_E1_LS0(self):
         """ INSERT TypeError & ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 不適切なタイプの値を挿入する
-        期待値: TypeErrorが発生する
+        Prerequisities: List is empty (Size == 0)
+        RUN condition: Type is faulty
+        Expected Result: TypeError
         """
         self.list =  list_LS1()
         
@@ -78,10 +78,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.insert(0, 10)
 
     def test_insert_E2_LS0(self):   
-        """ INSERT IndexError無効 + ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 無効なindex (例: -1) を指定して要素を挿入する
-        期待値: IndexErrorが発生する
+        """ INSERT IndexError + ListSize == 0
+        Prerequisities: List is empty (Size == 0)
+        RUN condition: faulty index (eg: -1)
+        Expected Result: IndexError
         """
         self.list =list_LS0()
         with self.assertRaises(IndexError):
@@ -89,9 +89,9 @@ class DoubleTestList(unittest.TestCase):
     
     def test_insert_E3_LS0(self):
         """ INSERT IndexError & ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 実行対象リストに存在していないindexを指定して要素を挿入する
-        期待値: IndexErrorが発生する
+        Prerequisities: List is empty (Size == 0)
+        RUN condition: index that doesn't exsist in the List is set as a property
+        Expected Result: IndexError
         """
         self.list =list_LS0()
         with self.assertRaises(IndexError):
@@ -99,9 +99,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_E3_LS1(self):
         """ INSERT IndexError & ListSize == 1
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: 実行対象リストに存在していないindexを指定して要素を挿入する
-        期待値: IndexErrorが発生する
+        Prerequsities: List has 1 item (Size == 1)
+        RUN condition: index that doesn't exsist in the List is set as a property
+        Expected Result: IndexError
         """
         self.list =list_LS1()
         with self.assertRaises(IndexError):
@@ -109,9 +109,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_E3_LS2(self):
         """ INSERT IndexError & ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: 実行対象リストに存在していないindexを指定して要素を挿入する
-        期待値: IndexErrorが発生する
+        Prerequsities: List has 2 item (Size == 2)
+        RUN condition: index that doesn't exsist in the List is set as a property
+        Expected Result: IndexError
         """
         self.list =list_LS2()
         with self.assertRaises(IndexError):
@@ -119,9 +119,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_E3_LS3(self):
         """ INSERT IndexError & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: 実行対象リストに存在していないindexを指定して要素を挿入する
-        期待値: IndexErrorが発生する
+        Prerequsities: List has 3 items (Size == 3)
+        RUN condition: index that doesn't exsist in the List is set as a property
+        Expected Result: IndexError
         """
         self.list =list_LS3()
         with self.assertRaises(IndexError):
@@ -130,9 +130,9 @@ class DoubleTestList(unittest.TestCase):
     # INSERT 通常処理
     def test_insert_LS0_NI0(self):
         """ INSERT ListSize == 0 & NodeIndex  == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: index = 0 に要素を挿入する
-        期待値: リストに要素が1つだけ存在する
+        Prerequisities: List is empty (Size == 0)
+        RUN condition: index is set to 0
+        Expected Result: List only has 1 item
         """
         self.list =list_LS0()
         self.list.insert(0, 'TARGET')
@@ -141,9 +141,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS1_NI0(self):
         """ INSERT ListSize == 1 & NodeIndex  == 0
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: index = 0 に要素を挿入する
-        期待値: 新しい要素がリストの先頭に挿入される
+        Prerequsities: List has 1 item (Size == 1)
+        RUN condition: index is set to 0
+        Expected Result: new node is at head of the list
         """
         self.list = list_LS0()
         self.list.insert(0, 'TARGET')
@@ -152,9 +152,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS1_NI1(self):
         """ INSERT ListSize == 1 & NodeIndex  == 2
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: index = 1 に要素を挿入する
-        期待値: 新しい要素がリストの末尾に挿入される
+        Prerequsities: List has 1 item (Size == 1)
+        RUN condition: Node is at index = 1 
+        Expected Result: new node is at tail of the list
         """
         self.list =list_LS1()
         self.list.insert(1, 'TARGET')
@@ -163,9 +163,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS2_NI0(self):
         """ INSERT ListSize == 2 & NodeIndex == 0
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: index = 0 に要素を挿入する
-        期待値: 新しい要素がリストの先頭に挿入される
+        Prerequsities: List has 2 item (Size == 2)
+        RUN condition: index is set to 0
+        Expected Result: new node is at head of the list
         """
         self.list =list_LS2()
         
@@ -175,9 +175,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS2_NI1(self):
         """ INSERT ListSize == 2 & NodeIndex == 1
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: index = 1 に要素を挿入する
-        期待値: 新しい要素がリストの中間に挿入される
+        Prerequsities: List has 2 item (Size == 2)
+        RUN condition: Node is at index = 1 
+        Expected Result: Node is at the center of the list
         """
         self.list =list_LS2()
         
@@ -187,9 +187,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS2_NI2(self):
         """ INSERT ListSize == 2 & NodeIndex == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: index = 2 に要素を挿入する
-        期待値: 新しい要素がリストの末尾に挿入される
+        Prerequsities: List has 2 item (Size == 2)
+        RUN condition: Node is at index = 2
+        Expected Result: new node is at tail of the list
         """
         self.list =list_LS2()
         
@@ -199,9 +199,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS3_NI0(self):
         """ INSERT ListSize == 3 & NodeIndex == 0
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 0 に要素を挿入する
-        期待値: 新しい要素がリストの先頭に挿入される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN condition: index is set to 0
+        Expected Result: new node is at head of the list
         """
         self.list =list_LS3()
         
@@ -211,9 +211,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS3_NI1(self):
         """ INSERT ListSize == 3 & NodeIndex == 1
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 2 に要素を挿入する
-        期待値: 新しい要素がリストの中間に挿入される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN condition: Node is at index = 2
+        Expected Result: Node is at the center of the list
         """
         self.list =list_LS3()
         
@@ -223,9 +223,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_insert_LS3_NI2(self):
         """INSERT ListSize == 3 & NodeIndex == 2
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 3 に要素を挿入する
-        期待値: 新しい要素がリストの末尾に挿入される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN condition: Node is at index = 3
+        Expected Result: new node is at tail of the list
         """
         self.list =list_LS3()
         
@@ -235,10 +235,10 @@ class DoubleTestList(unittest.TestCase):
     
     # REMOVE 異常処理
     def test_remove_E2_LS0(self):
-        """REMOVE IndexError（無効なIndex） & ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 無効なindex (例: -1) を指定して要素を削除する
-        期待値: IndexErrorが発生する
+        """REMOVE IndexError & ListSize == 0
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: remove node with invalid index
+        Expected Result: IndexError
         """
         self.list =list_LS0()
         
@@ -246,10 +246,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.remove(-1)
 
     def test_remove_E3_LS0(self):
-        """ REMOVE IndexError（存在していないIndex） & ListSize == 0    
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 実行対象リストに存在していないindex (例: 1) を指定して要素を削除する
-        期待値: IndexErrorが発生する
+        """ REMOVE IndexError（Non exsisting Index） & ListSize == 0    
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: remove node with non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS0()
         
@@ -257,10 +257,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.remove(1)
 
     def test_remove_E3_LS1(self):
-        """ REMOVE IndexError（存在していないIndex） & ListSize == 1   
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: 実行対象リストに存在していないindex (例: 2) を指定して要素を削除する
-        期待値: IndexErrorが発生する
+        """ REMOVE IndexError（Non exsisting Index） & ListSize == 1   
+        Prerequsities: List has 1 item (Size == 1)
+        RUN conditions: remove node with non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS1()
         
@@ -268,10 +268,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.remove(2)
 
     def test_remove_E3_LS2(self):
-        """ REMOVE IndexError（存在していないIndex） & ListSize == 2    
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: 実行対象リストに存在していないindex (例: 3) を指定して要素を削除する
-        期待値: IndexErrorが発生する
+        """ REMOVE IndexError（Non exsisting Index） & ListSize == 2    
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: remove node with non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS2()
         
@@ -279,10 +279,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.remove(3)
 
     def test_remove_E3_LS3(self):
-        """ REMOVE IndexError（存在していないIndex） & ListSize == 3   
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: 実行対象リストに存在していないindex (例: 4) を指定して要素を削除する
-        期待値: IndexErrorが発生する
+        """ REMOVE IndexError（Non exsisting Index） & ListSize == 3   
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: remove node with non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS3()
         
@@ -292,9 +292,9 @@ class DoubleTestList(unittest.TestCase):
     # REMOVE　通常処理
     def test_remove_LS1_NI0(self):
         """ REMOVE NodeIndex == 0 & ListSize == 1
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: index = 0 の要素を削除する
-        期待値: リストが空になる
+        Prerequsities: List has 1 item (Size == 1)
+        RUN conditions: remove Node at head of list
+        Expected Result: list becomes empty
         """
         self.list =list_LS1()
         
@@ -303,9 +303,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_remove_LS2_NI0(self):
         """ REMOVE NodeIndex == 0 & ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: index = 0 の要素を削除する
-        期待値: リストの先頭要素が削除され、次の要素が先頭になる
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: remove Node at head of list
+        Expected Result: list head is removed, the next node becomes the head
         """
         self.list =list_LS2()
         
@@ -315,9 +315,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_remove_LS2_NI1(self):
         """ REMOVE NodeIndex == 1 & ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: index = 1 の要素を削除する
-        期待値: リストの末尾要素が削除される
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: remove index = 1 Node
+        Expected result: tail of list is deleted
         """
         self.list =list_LS2()
         
@@ -327,9 +327,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_remove_LS3_NI0(self):
         """ REMOVE NodeIndex == 0 & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 0 の要素を削除する
-        期待値: リストの先頭要素が削除され、次の要素が先頭になる
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: remove Node at head of list
+        Expected Result: list head is removed, the next node becomes the head
         """
         self.list =list_LS3()
         
@@ -340,9 +340,9 @@ class DoubleTestList(unittest.TestCase):
         
     def test_remove_LS3_NI1(self):
         """ REMOVE NodeIndex == 1 & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 1 の要素を削除する
-        期待値: リストの中間要素が削除され、他の要素が繰り上がる
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: remove index = 1 Node
+        Expected result: Node is deleted from middle of list, remaining nodes are connected
         """
         self.list =list_LS3()
         
@@ -353,9 +353,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_remove_LS3_NI2(self):
         """ REMOVE NodeIndex == 2 & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 2 の要素を削除する
-        期待値: リストの末尾要素が削除される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: index = 2 node is deleted
+        Expected result: tail of list is deleted
         """
         self.list = list_LS3()
         
@@ -366,6 +366,11 @@ class DoubleTestList(unittest.TestCase):
 
     # REVERSE　通常処理
     def test_reverse_LS0(self):
+        """ REVERSE ListSize == 0
+        Prerequsities: List has 0 items
+        RUN conditions: reverse list
+        Expected result: nothing
+        """
         self.list = list_LS0()
         self.list.reverse()
         self.assertEqual(self.list.length(), 0)
@@ -376,6 +381,11 @@ class DoubleTestList(unittest.TestCase):
             self.assertIn(expected_output, fake_out.getvalue())
     
     def test_reverse_LS1(self):
+        """ REVERSE ListSize == 1
+        Prerequsities: List has 1 items
+        RUN conditions: reverse list
+        Expected result: nothing
+        """
         self.list = list_LS1()
         self.list.reverse()
         self.assertEqual(self.list.length(), 1)
@@ -386,6 +396,11 @@ class DoubleTestList(unittest.TestCase):
             self.assertIn(expected_output, fake_out.getvalue())
     
     def test_reverse_LS2(self):
+        """ REVERSE ListSize == 2
+        Prerequsities: List has 2 items
+        RUN conditions: reverse list
+        Expected result: list is reversed
+        """
         self.list = list_LS2()
         self.list.reverse()
         self.assertEqual(self.list.length(), 2)
@@ -396,6 +411,11 @@ class DoubleTestList(unittest.TestCase):
             self.assertIn(expected_output, fake_out.getvalue())
     
     def test_reverse_LS3(self):
+        """ REVERSE ListSize == 3
+        Prerequsities: List has 3 items
+        RUN conditions: reverse list
+        Expected result: list is reversed
+        """
         self.list = list_LS3()
         self.list.reverse()
         self.assertEqual(self.list.length(), 3)
@@ -408,9 +428,9 @@ class DoubleTestList(unittest.TestCase):
     # LENGTH 通常処理 
     def test_length_LS0(self):
         """ LENGTH ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: リストのサイズを取る
-        期待値: リストのサイズが０である
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: take size of list
+        Expected Result: List has size of０
         """
         self.list =list_LS0()
         
@@ -418,9 +438,9 @@ class DoubleTestList(unittest.TestCase):
     
     def test_length_LS1(self):
         """ LENGTH ListSize == 1
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: リストのサイズを取る
-        期待値: リストのサイズが1である
+        Prerequsities: List has 1 item (Size == 1)
+        RUN conditions: take size of list
+        Expected Result: List has size of1
         """
         self.list =list_LS1()
 
@@ -428,9 +448,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_length_LS2(self):
         """ LENGTH ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: リストのサイズを取る
-        期待値: リストのサイズが3である
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: take size of list
+        Expected Result: List has size of3
         """
         self.list =list_LS2()
 
@@ -438,9 +458,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_length_LS3(self):
         """ LENGTH ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: リストのサイズを取る
-        期待値: リストのサイズが3である
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: take size of list
+        Expected Result: List has size of3
         """
         self.list =list_LS3()
 
@@ -449,9 +469,9 @@ class DoubleTestList(unittest.TestCase):
     # GET 異常処理
     def test_get_E1_LS0(self):
         """ LENGTH TypeError & ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 無効なタイプの値を取得する
-        期待値: TypeErrorが発生する
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: get with invalid type
+        Expected Result: TypeError
         """
         self.list =list_LS0()
         
@@ -460,9 +480,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_get_E2_LS0(self):
         """ LENGTH IndexError（無効なIndex） & ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 無効なindex (例: -1) を指定して要素を取得する
-        期待値: IndexErrorが発生する
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: set invalid index
+        Expected Result: IndexError
         """
         self.list =list_LS0()
         
@@ -470,10 +490,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.get(-1)
 
     def test_get_E3_LS0(self):
-        """ LENGTH IndexError（存在していないIndex） & ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: 実行対象リストに存在していないindex (例: 1) を指定して要素を取得する
-        期待値: IndexErrorが発生する
+        """ LENGTH IndexError（Non exsisting Index） & ListSize == 0
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: set non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS0()
         
@@ -481,10 +501,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.get(1)
 
     def test_get_E3_LS1(self):
-        """ LENGTH IndexError（存在していないIndex） & ListSize == 1
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: 実行対象リストに存在していないindex (例: 2) を指定して要素を取得する
-        期待値: IndexErrorが発生する
+        """ LENGTH IndexError（Non exsisting Index） & ListSize == 1
+        Prerequsities: List has 1 item (Size == 1)
+        RUN conditions: set non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS1()
         
@@ -492,10 +512,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.get(2)
 
     def test_get_E3_LS2(self):
-        """ LENGTH IndexError（存在していないIndex） & ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: 実行対象リストに存在していないindex (例: 3) を指定して要素を取得する
-        期待値: IndexErrorが発生する
+        """ LENGTH IndexError（Non exsisting Index） & ListSize == 2
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: set non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS2()
         
@@ -503,10 +523,10 @@ class DoubleTestList(unittest.TestCase):
             self.list.get(3)
 
     def test_get_E3_LS3(self):
-        """ LENGTH IndexError（存在していないIndex） & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: 実行対象リストに存在していないindex (例: 4) を指定して要素を取得する
-        期待値: IndexErrorが発生する
+        """ LENGTH IndexError（Non exsisting Index） & ListSize == 3
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: set non exsisting index
+        Expected Result: IndexError
         """
         self.list =list_LS3()
         
@@ -516,9 +536,9 @@ class DoubleTestList(unittest.TestCase):
     #  GET 通常処理
     def test_get_LS1_NI0(self):
         """ GET NodeIndex == 0 & ListSize == 0
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: index = 0 の要素を取得する
-        期待値: リストの先頭要素が返される
+        Prerequsities: List has 1 item (Size == 1)
+        RUN conditions: get Node with index == 0
+        Expected Result: Head of list will be returned
         """
         self.list =list_LS1()
         
@@ -526,9 +546,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_get_LS2_NI0(self):
         """ GET NodeIndex == 0 & ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: index = 0 の要素を取得する
-        期待値: リストの先頭要素が返される
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: get Node with index == 0
+        Expected Result: Head of list will be returned
         """
         self.list =list_LS2()
         
@@ -536,9 +556,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_get_LS2_NI1(self):
         """ GET NodeIndex == 1 & ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: index = 1 の要素を取得する
-        期待値: リストの末尾要素が返される
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: get Node with index == 1
+        Expected Result: Tail of list will be returned
         """
         self.list =list_LS2()
         
@@ -548,9 +568,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_get_LS3_NI0(self):
         """ GET NodeIndex == 0 & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 0 の要素を取得する
-        期待値: リストの先頭要素が返される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: get Node with index == 0
+        Expected Result: Head of list will be returned
         """
         self.list =list_LS3()
         
@@ -558,9 +578,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_get_LS3_NI1(self):
         """ GET NodeIndex == 1 & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 1 の要素を取得する
-        期待値: リストの中間要素が返される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: get Node with index == 1
+        Expected Result: Middle of list will be returned
         """
         self.list =list_LS3()
         
@@ -568,9 +588,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_get_LS3_NI2(self):
         """ GET NodeIndex == 2 & ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: index = 2 の要素を取得する
-        期待値: リストの末尾要素が返される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: return Node with index == 2 
+        Expected Result: Tail of list will be returned
         """
         self.list =list_LS3()
         
@@ -579,9 +599,9 @@ class DoubleTestList(unittest.TestCase):
     #  CLEAR 通常
     def test_clear_LS0(self):
         """ CLEAR ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: リストをクリアする
-        期待値: リストが空になる
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: clear the list
+        Expected Result: list becomes empty
         """
         self.list =list_LS0()
         
@@ -590,9 +610,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_clear_LS1(self):
         """ CLEAR ListSize == 1
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: リストをクリアする
-        期待値: リストが空になる
+        Prerequsities: List has 1 item (Size == 1)
+        RUN conditions: clear the list
+        Expected Result: list becomes empty
         """
         self.list =list_LS1()
         
@@ -601,9 +621,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_clear_LS2(self):
         """ CLEAR ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: リストをクリアする
-        期待値: リストが空になる
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: clear the list
+        Expected Result: list becomes empty
         """
         self.list =list_LS2()
         
@@ -612,9 +632,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_clear_LS3(self):
         """ CLEAR ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: リストをクリアする
-        期待値: リストが空になる
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: clear the list
+        Expected Result: list becomes empty
         """
         self.list =list_LS3()
         
@@ -624,9 +644,9 @@ class DoubleTestList(unittest.TestCase):
     # DISPLAY 通常
     def test_display_LS0(self):
         """ DISPLAY ListSize == 0
-        事前条件: リストは空 (Size == 0)
-        RUN条件: リストの要素を表示する
-        期待値: 要素が正しく表示される
+        Prerequisities: List is empty (Size == 0)
+        RUN conditions: display the list
+        Expected Result: values will be correctly displayed
         """
         self.list =list_LS0()
         
@@ -637,9 +657,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_display_LS1(self):
         """ DISPLAY ListSize == 1
-        事前条件: リストには1つの要素が存在する (Size == 1)
-        RUN条件: リストの要素を表示する
-        期待値: 要素が正しく表示される
+        Prerequsities: List has 1 item (Size == 1)
+        RUN conditions: display the list
+        Expected Result: values will be correctly displayed
         """
         self.list =list_LS1()
         
@@ -650,9 +670,9 @@ class DoubleTestList(unittest.TestCase):
 
     def test_display_LS2(self):
         """ DISPLAY ListSize == 2
-        事前条件: リストには2つの要素が存在する (Size == 2)
-        RUN条件: リストの要素を表示する
-        期待値: 要素が正しく表示される
+        Prerequsities: List has 2 item (Size == 2)
+        RUN conditions: display the list
+        Expected Result: values will be correctly displayed
         """
         self.list =list_LS2()
 
@@ -663,9 +683,9 @@ class DoubleTestList(unittest.TestCase):
             
     def test_display_LS3(self):
         """ DISPLAY ListSize == 3
-        事前条件: リストには3つの要素が存在する (Size == 3)
-        RUN条件: リストの要素を表示する
-        期待値: 要素が正しく表示される
+        Prerequsities: List has 3 items (Size == 3)
+        RUN conditions: display the list
+        Expected Result: values will be correctly displayed
         """
         self.list = list_LS3()
 
